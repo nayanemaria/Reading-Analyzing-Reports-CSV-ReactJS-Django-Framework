@@ -1,9 +1,9 @@
 import { Card, Col, Row } from 'antd';
 import React, { useState } from 'react';
-import TableInfor from "./Table";
-import UploadFile from './UploadFile';
+import TableInfor from "../Table";
+import UploadFile from '../UploadFile';
 
-export default function CardAnt(props) {
+export default function CardAnt() {
     const [lista, setLista] = useState([]);
     return(
         <div className="site-card-wrapper">
