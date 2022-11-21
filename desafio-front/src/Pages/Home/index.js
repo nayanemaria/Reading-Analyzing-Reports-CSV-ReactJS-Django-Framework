@@ -12,7 +12,7 @@ import {
   export default function Home() {
   
       const { Header, Footer, Sider, Content } = Layout;
-      const [collapsed, setCollapsed] = useState(false);
+      const [collapsed, setCollapsed] = useState(true);
   
       return (
           <Layout style={{ minHeight: '100vh' }}>

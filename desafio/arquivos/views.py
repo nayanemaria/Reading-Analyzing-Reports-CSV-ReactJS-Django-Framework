@@ -11,7 +11,6 @@ import csv, json, os, environ
 def listar_arquivos(request):
     try:
         ROOT_DIR = (environ.Path(__file__) - 3)
-        print(ROOT_DIR)
         APPS_DIR = ROOT_DIR.path("desafio")
         my_result = []
         
@@ -20,13 +19,10 @@ def listar_arquivos(request):
         filename = fs.save(arquivo.name, arquivo )
         uploaded_file_url = fs.url("desafio/"+filename)
         diretorio = os.path.dirname(os.path.dirname(filename))
-        print("arquivo",uploaded_file_url)
         diretorio_arquivo = '{}{}'.format(APPS_DIR,uploaded_file_url)
-        print("diretorio_arquivo",diretorio_arquivo)
+
         with open("/Users/pipocadigital/Documents/" + uploaded_file_url) as csv_file_handler:
-            print("ENTREI AQUI NESSE CARAI")
             csv_reader = csv.reader(csv_file_handler)
-            print("CSV READER", csv_reader)
             csv_reader.__next__()
             for row in csv_reader:
                 csv_teste = {
@@ -38,8 +34,6 @@ def listar_arquivos(request):
                     "vulnerability_publication_date": row[5],
                 }
                 my_result.append(csv_teste)
-            print(len(my_result))
-            print(my_result)
             
         context = {
              'pagination': {
@@ -49,6 +43,7 @@ def listar_arquivos(request):
             "list": my_result
         } 
         return Response(context, status=status.HTTP_200_OK)
+        
     except Exception as ERROR:
         context = {
             "error": ERROR,
